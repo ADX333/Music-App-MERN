@@ -1,9 +1,12 @@
 const dns=require('dns');
-dns.setServers(['8.8.4.4, 8.8.8.8']);
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 const app = require('./src/app');
-require("dotenv").congif();
+const connectDB = require('./src/db/db');
+require("dotenv").config();
 
+connectDB();
 
 app.listen(3000,()=>{
-  "Server running on 3hazaar"
+  console.log ("Server running on 3hazaar")
 })
+
