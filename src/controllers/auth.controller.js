@@ -1,6 +1,5 @@
 const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
-const router=express.Router();
 const bcrypt=require('bcryptjs')
 
 async function registerUser(req,res){
@@ -42,3 +41,5 @@ async function registerUser(req,res){
     }
   })
 }
+
+module.exports={registerUser};
