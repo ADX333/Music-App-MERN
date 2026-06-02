@@ -13,7 +13,7 @@ async function registerUser(req,res){
   })
 
   if (userExists){
-    return res.status(409).json({message:"User already exists"})
+    return res.status(409).json({message:"User already exists. Login to continue"})
   }
 
   const hash=await bcrypt.hash(password, 10);
@@ -42,4 +42,44 @@ async function registerUser(req,res){
   })
 }
 
-module.exports={registerUser};
+async function loginUser(req,res){
+  const {username,email,password,role}=req.body;
+
+  const user=await userModel.findOne({
+    $or:[
+      {username},
+      {email}
+    ]
+  })
+
+  if(!user){
+    return res.status(401).json({
+      message:"Wrong credentials"
+    })
+  }
+  
+  if (user){
+    //Login
+    const isPasswordValid=await bcrypt.compare(password,user.password);
+    if(!isPasswordValid){
+      return res.status(401).json({
+      message:"Wrong credentials"
+    })
+  }
+    const token=jwt.sign({
+      id:user._id,
+      role:user.role
+    }, process.env.JWT_TOKEN)
+
+    res.cookie(token,"token");
+
+    res.status(200).json({
+      message:"User Logged in successfully"
+    })
+  }
+
+  }
+
+
+
+module.exports={registerUser, loginUser};
