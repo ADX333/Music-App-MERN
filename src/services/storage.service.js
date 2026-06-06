@@ -1,5 +1,4 @@
-const {ImageKit}=require("@imagekit/nodejs");
-const { URLEndpoints } = require("@imagekit/nodejs/resources/accounts/url-endpoints.js");
+const ImageKit=require("@imagekit/nodejs");
 
 const ImageKitClient= new ImageKit({
   privateKey:process.env.IMAGEKIT_PVT_KEY,

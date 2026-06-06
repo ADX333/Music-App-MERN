@@ -5,7 +5,7 @@ const { uploadFile } = require("../services/storage.service");
 async function addMusic(req,res){
   const token=req.cookies.token;
   if(!token) return res.status(403).json({
-      message:"Invalid Request! User not allowed to add music"
+      message:"Invalid Request! Token not found"
     })
   try{
     const decoded=jwt.verify(token,process.env.JWT_TOKEN);
@@ -14,6 +14,7 @@ async function addMusic(req,res){
     return res.status(403).json({
       message:"Invalid Request! User not allowed to add music"
     })}
+  const {title} =req.body;
   const result=await uploadFile(req.file.buffer.toString('base64'))
   const music=await musicModel.create({
     uri:result.url,
@@ -31,8 +32,9 @@ async function addMusic(req,res){
   })
   }
   catch(err){
+    console.log(err);
     return res.status(401).json({
-      message:"Invalid Request! User not allowed to add music"
+      message:"Invalid Request! User not allowed to add music. Error 3"
   })
   }
   }
