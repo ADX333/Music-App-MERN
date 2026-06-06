@@ -1,7 +1,10 @@
-const app = require("../app");
 const express=require("express");
-const addMusic = require("../controllers/music.controller");
-app.use(express.json())
-const router=express.Router();
+const musicController = require("../controllers/music.controller");
+const musicRouter=express.Router();
+const upload=multer({
+  storage:multer.memoryStorage()
+})
 
-router.post('/addMusic', addMusic)
+router.post('/addMusic',upload.single("music"), musicController.addMusic)
+
+module.exports=musicRouter;
