@@ -39,7 +39,7 @@ async function addMusic(req,res){
       message:"Invalid Request! User not allowed to add music. Error 3"
   })
   }
-  }
+}
 
 async function addAlbum(req,res){
   const token=req.cookies.token;
@@ -74,8 +74,11 @@ async function addAlbum(req,res){
   })
 }
   catch(err){
-
-  }  
+    console.log(err)
+    return res.status(401).json({
+    message:"Error Occurred"
+  })  
+}
 }
 
-module.exports={addMusic};
+module.exports={addMusic, addAlbum};

@@ -8,4 +8,6 @@ const upload=multer({
 
 router.post('/addMusic',upload.single("music"), musicController.addMusic)
 
+router.post('/addAlbum', musicController.addAlbum)
+
 module.exports=router;
