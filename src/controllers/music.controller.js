@@ -57,10 +57,10 @@ async function addAlbum(req,res){
     })
   }
 
-  const {title,songIDs}=req.body;
+  const {title,songs}=req.body;
   const album=await albumModel.create({
    title,
-   songs: songIDs,
+   songs: songs,
    artist: decoded.id
   })
   res.status(201).json({
