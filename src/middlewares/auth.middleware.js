@@ -41,7 +41,7 @@ async function authUser(req,res,next){
   } catch (err) {
     console.log(err);
     res.status(403).json({
-      message:"Error Occured! Re-try or check console for more details"
+    message:"Error Occured! Re-try or check console for more details"
     })
   }
 }
