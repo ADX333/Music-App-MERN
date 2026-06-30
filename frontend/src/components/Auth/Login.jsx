@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import musicIcon from '../../assets/Icon3.png'
 
 
 export default function Login() {
@@ -37,7 +38,7 @@ export default function Login() {
   catch(err){
     console.log(err)
   }
-}
+  }
   function signUp(){
     setIsLogin(false)
   }
@@ -60,29 +61,40 @@ export default function Login() {
 
   return (
     
-    <div>
-      {isLogin ? (<form onSubmit={handleLogin}>
-        <input className="border border-purple-700 p-2" value={email} placeholder='Email' onChange={handleEmail}></input>
-        <input className="border border-purple-700 p-2" value={password} placeholder='Password' onChange={handlePass}></input>
-        <button className="bg-black text-purple-700 rounded-xl p-3">Submit</button>
-        <div>
-          <p>Not registered? Sign up first!</p>
-          <button className="bg-black text-purple-700 rounded-xl p-3" onClick={signUp}>Sign up</button>
+    <div className="h-screen bg-gray-900 font-['Roboto_Condensed'] flex justify-center items-center ">
+      <div className="bg-gray-950 rounded-xl hover:scale-[1.01] transition-all duration-300 shadow-[0_0_100px_rgba(126,34,206,0.4)] flex flex-row w-[600px] ">
+      <div className="w-1/3 bg-purple-700 flex flex-col items-center justify-center rounded-l-xl">
+        <img src={musicIcon} alt="Musico logo" className="w- h-44 "></img>
+      </div>
+      <div className="w-2/3 p-10">
+      {isLogin ? (<form className='flex flex-col items-center gap-4' onSubmit={handleLogin}>
+        <h1 className="text-white font font-extrabold text-3xl">Musico</h1>
+        <h1 className="text-white font-bold">Log-in to Continue</h1>
+        <input className="border border-purple-700 p-2 rounded-sm w-full bg-gray-800 hover:scale-[1.01] transition-all duration-300 text-white placeholder-gray-500" value={email} placeholder='Email' onChange={handleEmail}></input>
+        <input className="border border-purple-700 rounded-sm p-2 w-full bg-gray-800 hover:scale-[1.01] transition-all duration-300 text-white placeholder-gray-500" value={password} placeholder='Password' onChange={handlePass}></input>
+        <button className="bg-purple-700 text-white rounded-xl p-3 w-full hover:scale-105 transition-all duration-300 ">Submit</button>
+        <div >
+          <p className=" text-white mt-5">Not registered? Sign up first!</p>
+          <button className="bg-black mt-2 text-purple-700 text-xl rounded-xl p-3 w-full hover:scale-125 transition-all duration-300" onClick={signUp}>Sign up</button>
         </div>
-      </form>) 
+      </form>)
+      
       : 
-      (<form onSubmit={handleSignup}>
-        <input className="border border-purple-700 p-2" value={email} placeholder='Email' onChange={handleEmail}></input>
-        <input className="border border-purple-700 p-2" value={username} placeholder='Enter a Username' onChange={handleUsername}></input>
-        <input className="border border-purple-700 p-2" value={password} placeholder='Password' onChange={handlePass}></input>
-        <select className="border border-purple-700 p-2" placeholder='Role' onChange={handleRole}>
+      
+      (<form className='flex flex-col items-center gap-4' onSubmit={handleSignup}>
+        <h1 className="font-extrabold text-white text-3xl">Musico </h1>
+        <input className="border border-purple-700 p-2 rounded-sm w-full bg-gray-800 hover:scale-[1.01] transition-all duration-300 text-white placeholder-gray-500" value={email} placeholder='Email' onChange={handleEmail}></input>
+        <input className="border border-purple-700 p-2 rounded-sm w-full bg-gray-800 hover:scale-[1.01] transition-all duration-300 text-white placeholder-gray-500" value={username} placeholder='Enter a Username' onChange={handleUsername}></input>
+        <input className="border border-purple-700 p-2 rounded-sm w-full bg-gray-800 hover:scale-[1.01] transition-all duration-300 text-white placeholder-gray-500" value={password} placeholder='Password' onChange={handlePass}></input>
+        <select className="border border-purple-700 p-2 rounded-sm w-full bg-gray-800 hover:scale-[1.01] transition-all duration-300 text-white placeholder-gray-500" placeholder='Role' onChange={handleRole}>
           <option value="user">User</option>
           <option value="artist">Artist</option>
         </select>
-        <button className="bg-black text-purple-700 rounded-xl p-3">Submit</button>
+        <button className="text-black w-full hover:scale-105 transition-all duration-300 bg-purple-700 rounded-xl p-3">Submit</button>
         
       </form>)}
-      
+      </div>
+      </div>
     </div> 
     
     

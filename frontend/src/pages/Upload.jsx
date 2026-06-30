@@ -28,7 +28,8 @@ function Upload() {
   }
   
   return (
-    <div>
+    <div className="bg-black h-screen">
+      <img src=""></img>
       <form onSubmit={handleSubmit}>
         <input value={title} placeholder='Enter the title' onChange={handleTitle}className='border-purple-700 rounded-lg'></input>
         <input type="file" placeholder="Upload the file" onChange={handleFile}
