@@ -50,7 +50,7 @@ async function addAlbum(req,res){
 }
 
 async function getAllMusic(req,res){
-  const songs=await musicModel.find().limit(4).populate("artist", "username")
+  const songs=await musicModel.find().limit(40).populate("artist", "username")
 
   res.status(200).json({
     message:"All music fetched",

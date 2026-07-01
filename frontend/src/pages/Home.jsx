@@ -26,6 +26,11 @@ export default function Home() {
   fetchSongs()
 
 },[])
+
+  async function logOut(){
+    await axios.post('http://localhost:3000/api/auth/logout',{},{withCredentials:true});
+    navigate('/');
+  }
   
   return (
     <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url(${backGround})` }}>
@@ -39,8 +44,11 @@ export default function Home() {
       ))}
     </div>
 
-    <div>
-      <button className="absolute right-8 top-6 bg-purple-700 text-black text-2xl p-2 rounded-xl" onClick={()=>navigate('/upload')}>Upload</button>
+    <div className="flex gap-3 absolute right-8 top-6">
+      
+      <button className=" text-red-700 bg-black hover:scale-105 transition-all duration:300 text-xl p-2 rounded-xl" onClick={()=>logOut()}>Log Out</button>
+
+      <button className=" bg-purple-700 text-black hover:scale-105 transition-all duration:300 text-2xl p-2 rounded-xl" onClick={()=>navigate('/upload')}>Upload</button>
     </div>
     
     <div className="flex-1 flex items-center justify-center">

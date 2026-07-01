@@ -8,16 +8,22 @@ function Upload() {
   const [title,setTitle]=useState("");
   const [music,setMusic]=useState(null);
   const navigate=useNavigate();
+  const [message,setMessage]=useState('');
 
   async function handleSubmit(e){
+    e.preventDefault();
     const formData=new FormData();
     formData.append("title", title);
     formData.append("music", music);
     try{
       const newSong=await axios.post("http://localhost:3000/api/music/addMusic", formData, {withCredentials:true})
+      setMessage("Song Uploaded Successfully")
+      setTimeout(()=>{setMessage('')},5000)
       console.log("Uploaded Successfully")
     }
     catch(err){
+      setMessage("Song Upload Failed")
+      setTimeout(()=>{setMessage('')},5000)
       console.log("Error Occurred : ", err)
     }
   }
@@ -36,7 +42,6 @@ function Upload() {
       <img src={musicIcon} alt="Musico logo" className="w-24 h-16" />
       <p className="text-white font-bold">Musico</p>
       </div>
-
       <div className="absolute right-6 top-6">
         <button className="bg-black text-purple-700 rounded-xl p-3 w-full hover:scale-105 transition-all duration-300" onClick={()=>navigate('/home')}>Home</button>
       </div>
@@ -55,6 +60,8 @@ function Upload() {
         <input className="border border-purple-700 rounded-sm p-2 w-full bg-gray-800 hover:scale-[1.01] transition-all duration-300 text-white placeholder-gray-500" type="file" placeholder="Upload the file" onChange={handleFile}
         ></input>
         <button className="bg-purple-700 text-white rounded-xl p-3 w-full hover:scale-105 transition-all duration-300 ">Upload</button>
+        {message && <p className="bg-green-600 text-center text-black p-3 text-xl rounded-xl">{message}</p>}
+
       </form>
       </div>
       </div>
