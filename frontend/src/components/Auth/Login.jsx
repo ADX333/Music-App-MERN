@@ -29,7 +29,7 @@ export default function Login() {
   async function handleLogin(e){
     e.preventDefault();
     try{
-    const loginData=await axios.post("http://localhost:3000/api/auth/login",{
+    const loginData=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`,{
       email:email,
       password:password
     }, {withCredentials:true});
@@ -49,7 +49,7 @@ export default function Login() {
   async function handleSignup(e){
     e.preventDefault();
     try{
-    const signupData=await axios.post('http://localhost:3000/api/auth/register',{
+    const signupData=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`,{
       email:email,
       username:username,
       password:password,

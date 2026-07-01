@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(()=>{
     const fetchSongs=async()=>{
       try{
-      const getSongs=await axios.get('http://localhost:3000/api/music/getMusic', {withCredentials:true})
+      const getSongs=await axios.get(`${import.meta.env.VITE_API_URL}/api/music/getMusic`, {withCredentials:true})
       console.log(getSongs.data)
       setSongs(getSongs.data.songs)
       }catch(err){
@@ -28,7 +28,7 @@ export default function Home() {
 },[])
 
   async function logOut(){
-    await axios.post('http://localhost:3000/api/auth/logout',{},{withCredentials:true});
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`,{},{withCredentials:true});
     navigate('/');
   }
   

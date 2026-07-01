@@ -16,7 +16,7 @@ function Upload() {
     formData.append("title", title);
     formData.append("music", music);
     try{
-      const newSong=await axios.post("http://localhost:3000/api/music/addMusic", formData, {withCredentials:true})
+      const newSong=await axios.post(`${import.meta.env.VITE_API_URL}/api/music/addMusic`, formData, {withCredentials:true})
       setMessage("Song Uploaded Successfully")
       setTimeout(()=>{setMessage('')},5000)
       console.log("Uploaded Successfully")
