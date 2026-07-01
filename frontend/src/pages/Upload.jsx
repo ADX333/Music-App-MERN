@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import backGround from '../assets/backg1.png';
 import musicIcon from '../assets/Icon3.png';
+import { useNavigate } from 'react-router-dom';
 
 function Upload() {
   const [title,setTitle]=useState("");
   const [music,setMusic]=useState(null);
+  const navigate=useNavigate();
 
   async function handleSubmit(e){
-    e.preventDefault();
     const formData=new FormData();
     formData.append("title", title);
     formData.append("music", music);
@@ -34,6 +35,10 @@ function Upload() {
       <div className="absolute top-6 left-6 flex items-center gap-2">
       <img src={musicIcon} alt="Musico logo" className="w-24 h-16" />
       <p className="text-white font-bold">Musico</p>
+      </div>
+
+      <div className="absolute right-6 top-6">
+        <button className="bg-black text-purple-700 rounded-xl p-3 w-full hover:scale-105 transition-all duration-300" onClick={()=>navigate('/home')}>Home</button>
       </div>
       <div className="flex flex-col h-full justify-center items-center font-['Roboto_Condensed']">
       <div className="w-96 bg-white/5 backdrop-blur-md rounded-2xl border border-white/20">
